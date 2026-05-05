@@ -5,8 +5,6 @@
 -- 実行前の確認事項:
 --   1. ACCOUNTADMIN ロールで実行すること
 --   2. Snowflake Marketplace から "Snowflake Public Data (Free)" を取得済みであること
---   3. GitHub Personal Access Token (PAT) を準備すること（プライベートリポジトリのため）
---      必要な権限: repo (full control of private repositories)
 -- ============================================================
 
 USE ROLE ACCOUNTADMIN;
@@ -70,34 +68,20 @@ CREATE STAGE IF NOT EXISTS QUANT_HOL_DB.AI.SKILL_STAGE
 CREATE OR REPLACE API INTEGRATION QUANT_HOL_GITHUB_INTEGRATION
     API_PROVIDER          = git_https_api
     API_ALLOWED_PREFIXES  = ('https://github.com/sfc-gh-kmotokubota')
-    ALLOWED_AUTHENTICATION_SECRETS = ALL
     ENABLED               = TRUE;
 
 -- API Integration の確認
 DESCRIBE API INTEGRATION QUANT_HOL_GITHUB_INTEGRATION;
 
 -- ============================================================
--- SECTION 6: GitHub Personal Access Token (Secret)
--- ============================================================
--- プライベートリポジトリにアクセスするための PAT を Snowflake Secret に格納
--- ※ '<your_github_pat>' を実際の GitHub PAT に置き換えてから実行すること
---   PAT の作成: GitHub > Settings > Developer settings > Personal access tokens
---   必要な権限: repo (full control of private repositories)
-
-CREATE OR REPLACE SECRET QUANT_HOL_DB.QUANT.GITHUB_PAT
-    TYPE          = GENERIC_STRING
-    SECRET_STRING = '<your_github_pat>'
-    COMMENT       = 'GitHub PAT for private repo access';
-
--- ============================================================
--- SECTION 7: Git Repository Integration
+-- SECTION 6: Git Repository Integration
+-- パブリックリポジトリのため認証不要
 -- ============================================================
 
 CREATE OR REPLACE GIT REPOSITORY QUANT_HOL_DB.QUANT.QUANT_HOL_REPO
-    API_INTEGRATION      = QUANT_HOL_GITHUB_INTEGRATION
-    GIT_CREDENTIALS      = QUANT_HOL_DB.QUANT.GITHUB_PAT
-    ORIGIN               = 'https://github.com/sfc-gh-kmotokubota/quant-portfolio-optimization-snowflake-hol'
-    COMMENT              = 'Quant Portfolio Optimization HOL Repository';
+    API_INTEGRATION = QUANT_HOL_GITHUB_INTEGRATION
+    ORIGIN          = 'https://github.com/sfc-gh-kmotokubota/quant-portfolio-optimization-snowflake-hol'
+    COMMENT         = 'Quant Portfolio Optimization HOL Repository (Public)';
 
 -- Git リポジトリの最新状態を取得
 ALTER GIT REPOSITORY QUANT_HOL_DB.QUANT.QUANT_HOL_REPO FETCH;
@@ -106,7 +90,7 @@ ALTER GIT REPOSITORY QUANT_HOL_DB.QUANT.QUANT_HOL_REPO FETCH;
 LS @QUANT_HOL_DB.QUANT.QUANT_HOL_REPO/branches/main/;
 
 -- ============================================================
--- SECTION 8: Git → Internal Stage への PDF コピー
+-- SECTION 7: Git → Internal Stage への PDF コピー
 -- ============================================================
 -- docs/ 配下の年次報告書 PDF を内部ステージにコピー
 
@@ -118,7 +102,7 @@ COPY FILES
 LS @QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE;
 
 -- ============================================================
--- SECTION 9: Git → Internal Stage への SKILL.md コピー
+-- SECTION 8: Git → Internal Stage への SKILL.md コピー
 -- ============================================================
 
 COPY FILES
@@ -129,7 +113,7 @@ COPY FILES
 LS @QUANT_HOL_DB.AI.SKILL_STAGE/;
 
 -- ============================================================
--- SECTION 10: ノートブック用のロール・権限設定
+-- SECTION 9: ノートブック用のロール・権限設定
 -- ============================================================
 
 -- ハンズオン参加者ロール作成（任意）
@@ -158,7 +142,7 @@ GRANT READ, WRITE ON STAGE QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE TO ROLE QUANT
 GRANT READ, WRITE ON STAGE QUANT_HOL_DB.AI.SKILL_STAGE             TO ROLE QUANT_HOL_ROLE;
 
 -- Git リポジトリ参照権限
-GRANT USAGE ON INTEGRATION QUANT_HOL_GITHUB_INTEGRATION TO ROLE QUANT_HOL_ROLE;
+GRANT USAGE ON INTEGRATION QUANT_HOL_GITHUB_INTEGRATION       TO ROLE QUANT_HOL_ROLE;
 GRANT READ  ON GIT REPOSITORY QUANT_HOL_DB.QUANT.QUANT_HOL_REPO TO ROLE QUANT_HOL_ROLE;
 
 -- Marketplace データへの参照権限（取得済みであること）
@@ -172,7 +156,7 @@ GRANT DATABASE ROLE SNOWFLAKE.ML_RUNTIME_WAREHOUSE_USER TO ROLE QUANT_HOL_ROLE;
 -- GRANT ROLE QUANT_HOL_ROLE TO USER <username>;
 
 -- ============================================================
--- SECTION 11: セットアップ確認
+-- SECTION 10: セットアップ確認
 -- ============================================================
 
 -- 作成したオブジェクト一覧
