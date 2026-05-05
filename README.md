@@ -72,17 +72,22 @@ QUANT_PM_AGENT (Cortex Agent × Snowflake Intelligence)
 ```
 quant-portfolio-optimization-snowflake-hol/
 ├── README.md
+├── setup.sql                              ← 環境構築（API/Git Integration含む）
 ├── notebooks/
-│   └── quant_portfolio_hol.ipynb   ← メインハンズオンノートブック
+│   └── quant_portfolio_hol.ipynb          ← メインハンズオンノートブック
 ├── docs/
-│   ├── NVDA_10K_MDA_2024.pdf       ← NVIDIA FY2024 Annual Report (MDA)
-│   ├── AAPL_10K_MDA_2024.pdf       ← Apple FY2024 Annual Report (MDA)
-│   ├── JPM_10K_MDA_2024.pdf        ← JPMorgan FY2024 Annual Report (MDA)
-│   └── toyota_yukashoken_2024.pdf  ← トヨタ自動車 有価証券報告書抜粋
+│   └── toyota_semiannual_2025_09.pdf      ← トヨタ自動車 半期報告書（2025年9月期）
 └── skills/
     └── portfolio_optimizer/
-        └── SKILL.md                ← Cortex Agent Skills 定義ファイル
+        └── SKILL.md                       ← Cortex Agent Skills 定義ファイル
 ```
+
+> **なぜ PDF は Toyota のみ？**  
+> 米国株（NVDA/AAPL/JPM 等）の財務データ・決算トランスクリプトは  
+> **Snowflake Public Data (Free)** に含まれる `SEC_REPORT_ATTRIBUTES` と `EARNINGS_TRANSCRIPTS` で完全にカバーされます。  
+> PDF 処理パイプライン（`AI_PARSE_DOCUMENT` → Chunking → Cortex Search）のデモには  
+> **日本語文書であるトヨタの半期報告書**を使用することで、  
+> 「英語・日本語問わず同じパイプラインが機能する」ことを示します。
 
 ---
 

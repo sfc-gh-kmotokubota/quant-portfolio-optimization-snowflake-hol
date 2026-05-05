@@ -92,7 +92,10 @@ LS @QUANT_HOL_DB.QUANT.QUANT_HOL_REPO/branches/main/;
 -- ============================================================
 -- SECTION 7: Git → Internal Stage への PDF コピー
 -- ============================================================
--- docs/ 配下の年次報告書 PDF を内部ステージにコピー
+-- docs/ 配下のファイルをコピー
+-- ※ 米国株 (NVDA/AAPL/JPM) の財務・トランスクリプトデータは
+--   Snowflake Public Data (Free) の SEC_REPORT_ATTRIBUTES / EARNINGS_TRANSCRIPTS で取得
+-- ※ PDF は日本語文書デモ用にトヨタ自動車の半期報告書のみ使用
 
 COPY FILES
     INTO @QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE
