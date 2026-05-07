@@ -51,12 +51,15 @@ ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'AWS_US';
 -- ============================================================
 
 -- 有報 PDF 格納ステージ
-CREATE STAGE IF NOT EXISTS QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE
+CREATE OR REPLACE STAGE QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE
+    ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE')
     DIRECTORY = (ENABLE = TRUE)
-    COMMENT   = '年次報告書・有報 PDF 格納場所';
+    COMMENT   = '半期報告書 PDF 格納場所';
 
 -- Agent Skills 格納ステージ
-CREATE STAGE IF NOT EXISTS QUANT_HOL_DB.AI.SKILL_STAGE
+CREATE OR REPLACE STAGE QUANT_HOL_DB.AI.SKILL_STAGE
+    ENCRYPTION = (TYPE = 'SNOWFLAKE_SSE')
+    DIRECTORY = (ENABLE = TRUE)
     COMMENT = 'Cortex Agent Skills (SKILL.md) 格納場所';
 
 -- ============================================================
@@ -98,22 +101,29 @@ LS @QUANT_HOL_DB.QUANT.QUANT_HOL_REPO/branches/main/;
 -- ※ PDF は日本語文書デモ用にトヨタ自動車の半期報告書のみ使用
 
 COPY FILES
-    INTO @QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE
-    FROM @QUANT_HOL_DB.QUANT.QUANT_HOL_REPO/branches/main/docs/;
+    INTO @QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE/
+    FROM @QUANT_HOL_DB.QUANT.QUANT_HOL_REPO/branches/main/docs/
+    PATTERN = '.*\.pdf';
+
+-- ディレクトリメタデータを更新
+ALTER STAGE QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE REFRESH;
 
 -- コピー結果の確認
-LS @QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE;
+LIST @QUANT_HOL_DB.QUANT.ANNUAL_REPORTS_STAGE;
 
 -- ============================================================
 -- SECTION 8: Git → Internal Stage への SKILL.md コピー
 -- ============================================================
 
 COPY FILES
-    INTO @QUANT_HOL_DB.AI.SKILL_STAGE
+    INTO @QUANT_HOL_DB.AI.SKILL_STAGE/
     FROM @QUANT_HOL_DB.QUANT.QUANT_HOL_REPO/branches/main/skills/;
 
+-- ディレクトリメタデータを更新
+ALTER STAGE QUANT_HOL_DB.AI.SKILL_STAGE REFRESH;
+
 -- コピー結果の確認
-LS @QUANT_HOL_DB.AI.SKILL_STAGE/;
+LIST @QUANT_HOL_DB.AI.SKILL_STAGE/;
 
 -- ============================================================
 -- SECTION 9: セットアップ確認
