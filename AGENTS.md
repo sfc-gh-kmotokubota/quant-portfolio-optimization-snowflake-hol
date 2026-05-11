@@ -121,6 +121,9 @@ NVIDIAのSEC提出書類から売上成長とマージン拡大を確認して
 | **Text Processing** | `SPLIT_TEXT_RECURSIVE_CHARACTER` | チャンク分割（1000文字/200重複） |
 | **Cortex Search** | Cortex Search Service | 有報・トランスクリプトのセマンティック検索 |
 | **LLM** | `AI_COMPLETE` | センチメント構造化・ファクター分析 |
+| **Sentiment** | `AI_SENTIMENT` | 1行SQLでセンチメントスコア（-1〜1）取得 |
+| **Classification** | `AI_CLASSIFY` | トランスクリプトを投資シグナルに分類 |
+| **Aggregation** | `AI_AGG` | 複数銘柄を横断集約し市場ムード要約 |
 | **AI Filter** | `AI_FILTER` + `PROMPT()` | 地政学リスク銘柄スクリーニング |
 | **ML** | Snowflake ML Registry | LightGBM モデルの登録・バージョニング・推論 |
 | **Semantic Layer** | Semantic View | Text-to-SQL（ファクター・ファンダメンタル） |
