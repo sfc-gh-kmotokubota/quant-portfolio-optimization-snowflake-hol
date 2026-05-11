@@ -19,7 +19,7 @@
 | フェーズ | テーマ | Snowflake 機能 |
 |---------|--------|--------------|
 | **Block 1A** | 有報 PDF の構造化処理 | `AI_PARSE_DOCUMENT`, `SPLIT_TEXT_RECURSIVE_CHARACTER`, Cortex Search |
-| **Block 1B** | 決算トランスクリプトのセンチメント分析 | `AI_COMPLETE`, `AI_FILTER` |
+| **Block 1B** | 決算トランスクリプトのセンチメント分析 | `AI_SENTIMENT`, `AI_CLASSIFY`, `AI_COMPLETE`, `AI_FILTER`, `AI_AGG` |
 | **Block 2** | 5ファクターモデル構築と統計検証 | Snowflake Notebook, ML Registry |
 | **Block 3** | CVaR ポートフォリオ最適化 SP | Python Stored Procedure, scipy |
 | **Block 4** | AI エージェントの自動構築 | Cortex Code, Semantic View, Cortex Agent |
@@ -125,7 +125,7 @@ quant-portfolio-optimization-snowflake-hol/
 
 | カテゴリ | 技術 |
 |---------|------|
-| 非構造化データ処理 | `AI_PARSE_DOCUMENT`, `AI_COMPLETE`, `AI_FILTER`, `SPLIT_TEXT_RECURSIVE_CHARACTER` |
+| 非構造化データ処理 | `AI_PARSE_DOCUMENT`, `AI_SENTIMENT`, `AI_CLASSIFY`, `AI_COMPLETE`, `AI_FILTER`, `AI_AGG`, `SPLIT_TEXT_RECURSIVE_CHARACTER` |
 | 機械学習 | LightGBM, scikit-learn, scipy (conda 内蔵、外部接続不要) |
 | ML 管理 | Snowflake ML Registry |
 | セマンティック検索 | Cortex Search, Cortex Knowledge Extensions |
