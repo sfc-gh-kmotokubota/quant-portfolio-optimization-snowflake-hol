@@ -54,7 +54,7 @@
 | **1B** | 決算トランスクリプト → センチメント | AI_COMPLETE, AI_FILTER, PROMPT() |
 | **2** | 5ファクター計算・統計検証・ML | IC/ICIR/t-stat, LightGBM, ML Registry |
 | **3** | ストアドプロシージャ | GET_FACTOR_SCORES (リアルタイム推論), OPTIMIZE_PORTFOLIO (CVaR) |
-| **4** | Cortex Agent 構築 | Semantic View × 2, Cortex Search × 2, SP × 2 |
+| **4** | Cortex Agent 構築 | Semantic View × 3, Cortex Search × 2, SP × 2 |
 | **4.5** | Agent Skills 追加 | SKILL.md アップロード・GUI登録 |
 | **5** | Snowflake Intelligence デモ | Artifacts（チャート保存・共有・リフレッシュ） |
 
@@ -126,8 +126,8 @@ NVIDIAのSEC提出書類から売上成長とマージン拡大を確認して
 | **Aggregation** | `AI_AGG` | 複数銘柄を横断集約し市場ムード要約 |
 | **AI Filter** | `AI_FILTER` + `PROMPT()` | 地政学リスク銘柄スクリーニング |
 | **ML** | Snowflake ML Registry | LightGBM モデルの登録・バージョニング・推論 |
-| **Semantic Layer** | Semantic View | Text-to-SQL（ファクター・ファンダメンタル） |
-| **Agent** | Cortex Agent | 6ツール統合オーケストレーション |
+| **Semantic Layer** | Semantic View | Text-to-SQL（ファクター・ファンダメンタル・株価） |
+| **Agent** | Cortex Agent | 7ツール統合オーケストレーション |
 | **Skills** | Agent Skills | SKILL.md による再利用可能ワークフロー |
 | **Intelligence** | Snowflake Intelligence | Artifacts（チャート保存・リフレッシュ・共有） |
 
