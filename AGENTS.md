@@ -141,3 +141,6 @@ NVIDIAのSEC提出書類から売上成長とマージン拡大を確認して
 | matplotlib 日本語文字化け | フォント未インストール | 英語ラベルに統一済み |
 | ALTER AGENT でツール消失 | 既知の制約 | GUI から Skills 追加（ALTER AGENT は使わない） |
 | クレジット不足 | トライアルの日次制限 | Resource Monitor 設定済み（300 credits） |
+| カスタムツール `named arguments do not match` | パラメータ名がSPと不一致 | UIで各パラメータのNameをSPの引数名と完全一致させる |
+| カスタムツール `array type not supported` | ARRAY型パラメータ非対応 | VARCHAR(CSV)版ラッパーSP `OPTIMIZE_PORTFOLIO_AGENT` を使用 |
+| カスタムツール `Invalid argument types: ()` | パラメータ未定義（properties空） | UIで全パラメータを明示的に追加（Name, Type, Description, Required） |
