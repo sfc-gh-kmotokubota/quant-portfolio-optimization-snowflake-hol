@@ -42,7 +42,7 @@
 - **スキーマ**: `QUANT`（ファクター分析）/ `PM`（ポートフォリオ管理）/ `AI`（エージェント・Semantic View）
 - **ウェアハウス**: `QUANT_HOL_WH`（Medium）
 - **ステージ**: `QUANT_HOL_DB.QUANT.ANNUAL_REPORTS`（PDF）/ `QUANT_HOL_DB.AI.SKILL_STAGE`（Skills）
-- **Marketplace データ**: `SNOWFLAKE_PUBLIC_DATA_FREE`（株価・SEC・トランスクリプト）
+- **Marketplace データ**: `SNOWFLAKE_PUBLIC_DATA_PAID`（株価・SEC・トランスクリプト）
 - **CKE**: `SNOWFLAKE_PUBLIC_DATA_CORTEX_KNOWLEDGE_EXTENSION_EARNING_CALL_TRANSCRIPT_AND_DOCUMENTATION`
 
 ## ノートブック構成（Block 0〜5）
