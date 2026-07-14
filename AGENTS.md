@@ -56,7 +56,7 @@
 | **3** | ストアドプロシージャ | GET_FACTOR_SCORES (リアルタイム推論), OPTIMIZE_PORTFOLIO (CVaR) |
 | **4** | Cortex Agent 構築 | Semantic View × 3, Cortex Search × 2, SP × 2 |
 | **4.5** | Agent Skills 追加 | SKILL.md アップロード・GUI登録 |
-| **5** | Snowflake Intelligence デモ | Artifacts（チャート保存・共有・リフレッシュ） |
+| **5** | Snowflake CoWork デモ | Artifacts（チャート保存・共有・リフレッシュ） |
 
 ## Cortex Code で使える主要コマンド
 
@@ -82,7 +82,7 @@ Plan Mode では Cortex Code が実行計画を提示 → 承認後に自動実�
 
 ### Skill 呼び出し
 
-Snowflake Intelligence で `/` を入力するとスキルが表示されます:
+Snowflake CoWork で `/` を入力するとスキルが表示されます:
 
 - `/portfolio-optimizer` — ファクタースクリーニング → CVaR最適化の一連フロー
 
@@ -129,7 +129,7 @@ NVIDIAのSEC提出書類から売上成長とマージン拡大を確認して
 | **Semantic Layer** | Semantic View | Text-to-SQL（ファクター・ファンダメンタル・株価） |
 | **Agent** | Cortex Agent | 7ツール統合オーケストレーション |
 | **Skills** | Agent Skills | SKILL.md による再利用可能ワークフロー |
-| **Intelligence** | Snowflake Intelligence | Artifacts（チャート保存・リフレッシュ・共有） |
+| **Intelligence** | Snowflake CoWork | Artifacts（チャート保存・リフレッシュ・共有） |
 
 ## トラブルシューティング
 

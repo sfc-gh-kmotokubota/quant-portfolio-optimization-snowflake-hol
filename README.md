@@ -23,7 +23,7 @@
 | **Block 2** | 5ファクターモデル構築と統計検証 | Snowflake Notebook, ML Registry |
 | **Block 3** | CVaR ポートフォリオ最適化 SP | Python Stored Procedure, scipy |
 | **Block 4** | AI エージェントの自動構築 | Cortex Code, Semantic View, Cortex Agent |
-| **Block 5** | Snowflake Intelligence によるデモ | Snowflake Intelligence, Agent Skills |
+| **Block 5** | Snowflake CoWork によるデモ | Snowflake CoWork, Agent Skills |
 
 ---
 
@@ -61,7 +61,7 @@ Semantic Views (Cortex Analyst)
 
        ↓
 
-QUANT_PM_AGENT (Cortex Agent × Snowflake Intelligence)
+QUANT_PM_AGENT (Cortex Agent × Snowflake CoWork)
  6 ツール統合: ファクターSP × 最適化SP × 2 Semantic View × 2 Cortex Search
 ```
 
@@ -116,7 +116,7 @@ quant-portfolio-optimization-snowflake-hol/
 2. Snowflake Marketplace からデータを取得（上記2件）
 3. notebooks/quant_portfolio_hol.ipynb を Snowflake Workspaces にアップロード
 4. セルを順番に実行（Block 0 → Block 5）
-5. Snowflake Intelligence でデモプロンプトを試す
+5. Snowflake CoWork でデモプロンプトを試す
 ```
 
 ---
@@ -131,7 +131,7 @@ quant-portfolio-optimization-snowflake-hol/
 | セマンティック検索 | Cortex Search, Cortex Knowledge Extensions |
 | 自然言語 SQL | Cortex Analyst (Semantic View) |
 | AI コーディング | Cortex Code in Snowsight (Plan Mode) |
-| エージェント | Cortex Agent, Snowflake Intelligence, Agent Skills |
+| エージェント | Cortex Agent, Snowflake CoWork, Agent Skills |
 
 ---
 
